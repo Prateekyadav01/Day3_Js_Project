@@ -25,22 +25,29 @@
 }
 .text{
     display: flex;
-    width: 35vw;
+    width: 55vw;
     /* margin: auto; */
     /* height: 10vh; */
     flex-direction: column;
     color: #222;
+    /* border: 2px solid rebeccapurple; */
   
 }
 
-.text button{
-    display: flex;
-    color: #222;
-    text-align: left;
-    padding: 5px;
-    margin: 2px;
-}
 
+.btn1{
+    display: flex;
+    width: 35vw;
+    height: 5vh;
+    margin: 5px;
+    margin-left: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+   
+    /* border: 2px solid rebeccapurple; */
+    /* margin: auto; */
+}
 .btn{
     display: flex;
     width: 35vw;
@@ -62,4 +69,11 @@
     width: 20vw;
     font-size: 18px;
     align-items: center;
+}
+
+.correct{
+    background: #9aeabc;
+}
+.incorrect{
+    background: #ff9393;
 }

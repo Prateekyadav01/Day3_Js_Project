@@ -91,31 +91,47 @@ const next_btn = document.getElementById('next_btn');
 
 let current=0;
 let score=0;
+function start(){
+    current=0;
+    score=0;
+    next_btn.innerText="Next";
+    add();
+}
 
 function add(){
     console.log(current)
+    reset();
     let firstShow = question1[current];
-    // question.innerText=null;
     question.innerText= `${current+1}  ${firstShow.Question}`;
-    options.innerHTML = '';
     firstShow.Option.forEach(option=>{
         let optionButton = document.createElement('button');
         
         optionButton.textContent=option.text;
-        optionButton.addEventListener("click", () => handleCheck(option.correct));
-        options.appendChild(optionButton)
+        optionButton.classList.add('btn1');
+        options.appendChild(optionButton);
+        if(option.correct){
+            optionButton.dataset.correct=option.correct;
+        }
+        optionButton.addEventListener("click", handleCheck);
     })
     
 }
-function handleCheck(value){
-    if(value){
-        score++;
-        options.style.backgroundColor="green"
-    }
-   current++;
-    if(current<question1.length){
-            add();
+function reset(){
+    next_btn.style.display="none";
+    while(options.firstChild){
+        options.removeChild(options.firstChild);
     }
 }
+function handleCheck(e){
+    let selectedButton = e.target;
+    let isCorrect = selectedButton.dataset.correct==="true";
+    if(isCorrect){
+        selectedButton.classList.add('correct');
+    }
+    else{
+        selectedButton.classList.add('incorrect');
+    }
+
+}
 next_btn.addEventListener('click', add);
-add();
+start();
