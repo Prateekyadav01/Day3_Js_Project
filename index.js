@@ -21,35 +21,35 @@ const question1=[
         ]
     },
     {
-        Question:"Who is the God of Cricket",
+        Question:"Which country did India score their lowest total against in the history of the ODI World Cup?",
         Option:[
             {
-                text:"Sachin tendulkar",
+                text:"Australia",
                 correct:true
             },
             {
-                text:"Rohit Sharma",
+                text:"England",
                 correct:false
             },
             {
-                text:"MS Dhoni",
+                text:"South Africa",
                 correct:false
             },
             {
-                text:"Virat Kohli",
+                text:"New Zealand",
                 correct:false
             }
         ]
     },
     {
-        Question:"Who is the God of Cricket",
+        Question:"Who was the wicket-keeper of the Indian Cricket Team during the World Cup 2003 tournament?",
         Option:[
             {
-                text:"Sachin tendulkar",
-                correct:true
+                text:"Parthiv Patel",
+                correct:false
             },
             {
-                text:"Rohit Sharma",
+                text:"Nayan Mongia",
                 correct:false
             },
             {
@@ -57,28 +57,28 @@ const question1=[
                 correct:false
             },
             {
-                text:"Virat Kohli",
-                correct:false
+                text:"Rahul Dravid",
+                correct:true
             }
         ]
     },
     {
-        Question:"Who is the God of Cricket",
+        Question:" In which year were the World Cup matches reduced to 50 overs from the previous 60 overs?",
         Option:[
             {
-                text:"Sachin tendulkar",
+                text:"1983",
+                correct:false
+            },
+            {
+                text:"1987",
                 correct:true
             },
             {
-                text:"Rohit Sharma",
+                text:"1979",
                 correct:false
             },
             {
-                text:"MS Dhoni",
-                correct:false
-            },
-            {
-                text:"Virat Kohli",
+                text:"1992",
                 correct:false
             }
         ]
@@ -102,6 +102,7 @@ function add(){
     console.log(current)
     reset();
     let firstShow = question1[current];
+    console.log(firstShow)
     question.innerText= `${current+1}  ${firstShow.Question}`;
     firstShow.Option.forEach(option=>{
         let optionButton = document.createElement('button');
@@ -127,11 +128,42 @@ function handleCheck(e){
     let isCorrect = selectedButton.dataset.correct==="true";
     if(isCorrect){
         selectedButton.classList.add('correct');
+        score++;
     }
     else{
         selectedButton.classList.add('incorrect');
     }
+    Array.from(options.children).forEach(value =>{
+        if(value.dataset.correct==="true"){
+            value.classList.add("correct")
+        }
+        value.disabled=true;
+    });
+    next_btn.style.display="block";
 
 }
-next_btn.addEventListener('click', add);
+next_btn.addEventListener('click', ()=>{
+    if(current<question1.length){
+        handleNextButton();
+    }
+    else{
+        start();
+    }
+});
+function scoreShow(){
+    reset();
+    question.innerText= `Your score is ${score} out of ${question1.length}`
+    next_btn.style.display="block";
+    next_btn.innerHTML="Play again";
+}
+
+function handleNextButton(){
+    current++;
+    if(current<question1.length){
+        add();
+    }
+    else{
+        scoreShow();
+    }
+}
 start();
