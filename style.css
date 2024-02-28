@@ -20,8 +20,8 @@
     border: 2px solid red;
     width: 40vw;
     height: 50vh;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 .text{
     display: flex;
@@ -54,4 +54,12 @@
     background-color: rgb(137, 137, 241);
     color: black;
     font-weight: bold;
+}
+
+.question{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    font-size: 18px;
+    align-items: center;
 }
