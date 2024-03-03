@@ -1,1 +1,1 @@
-# Day3_Js_Project
+# Day3_Js_Project(Simple Quiz App)
